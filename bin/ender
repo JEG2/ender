@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby -wKU
+
+require "optparse"
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), *%w[.. lib])
+require "ender"
+
+options = {:config_path => File.join(ENV["HOME"].to_s, ".ender_bot_rc")}
+
+ARGV.options do |opts|
+  opts.banner = "Usage:  #{File.basename($PROGRAM_NAME)} [-c PATH] start|stop"
+  
+  opts.separator ""
+  opts.separator "Specific Options:"
+  
+  opts.on( "-c", "--config PATH", String,
+           "The path to your configuration file." ) do |path|
+    options[:config_path] = path
+  end
+  
+  opts.separator "Common Options:"
+  
+  opts.on( "-h", "--help",
+           "Show this message." ) do
+    puts opts
+    exit
+  end
+  
+  begin
+    opts.parse!
+    unless ARGV.empty? or
+           (ARGV.size == 1 and %w[start stop].include? ARGV.first)
+      raise "Bad mode"
+    end
+  rescue
+    puts opts
+    exit
+  end
+end
+
+case ARGV.shift
+when nil, "start"
+  begin
+    CONFIG = Config.load_config_file(options[:config_path])
+  rescue Errno::ENOENT
+    abort "There is no config file at #{options[:config_path]}"
+  rescue Exception
+    abort "Could not load your config file:  #{$!.message}"
+  end
+  
+  irc = Ender::IRCConnection.new( String(CONFIG.irc_server),
+                                  Integer(CONFIG.irc_port) )
+  bot = Ender::Bot.new(           irc,
+                                  String(CONFIG.bot_nick),
+                                  nil,
+                                  Array(CONFIG.channels) )
+  
+  irc.send_queue.flooding_time_limit    = Integer(CONFIG.flooding_time_limit)
+  irc.send_queue.flooding_message_limit = Integer(CONFIG.flooding_message_limit)
+  
+  trap("INT") do
+    trap("INT", "EXIT")
+    irc.quit
+  end
+
+  begin
+    bot.run
+  rescue Ender::IRCConnection::LoginError
+    abort $!.message
+  rescue Ender::IRCConnection::JoinError
+    abort $!.message
+  end
+when "stop"
+  
+else
+  abort "Unrecognized mode"
+end

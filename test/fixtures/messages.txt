@@ -1,0 +1,89 @@
+welcome
+  :kubrick.freenode.net 001 ender_bot :Welcome to the freenode IRC Network ender_bot
+
+nick_in_use
+  :kubrick.freenode.net 433 * JEG2 :Nickname is already in use.
+
+ping
+  PING :kubrick.freenode.net
+
+ctcp_ping
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net PRIVMSG ender_bot :PING
+
+ctcp_time
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net PRIVMSG ender_bot :TIME
+
+ctcp_version
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net PRIVMSG ender_bot :VERSION
+
+joined_channel
+  :ender_bot!n=ender_bo@ip68-97-89-187.ok.ok.cox.net JOIN :#botwar
+
+channel_topic
+  :kubrick.freenode.net 332 ender_bot #botwar :Beware the Groove!
+
+channel_mode
+  :kubrick.freenode.net 324 ender_bot #botwar +snk secret
+
+channel_mode_change
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net MODE #botwar +t
+
+user_mode_change
+  :ChanServ!ChanServ@services. MODE #botwar +o JEG2
+
+name_list
+  :kubrick.freenode.net 353 ender_bot @ #botwar :ender_bot seebq _acl_ itsderek23 grooves @ChanServ
+
+who_response
+  :kubrick.freenode.net 352 ender_bot #botwar n=itsderek c-67-169-23-121.hsd1.ca.comcast.net irc.freenode.net itsderek23 H :0 Derek Haynes
+
+whois_user
+  :kubrick.freenode.net 311 ender_bot Axman6 n=Axman6 pdpc/supporter/student/Axman6 * :Alex Mason
+
+whois_channels
+  :kubrick.freenode.net 319 ender_bot Axman6 :#openbsd @#macosx ##textmate #pf #macports
+
+whois_away
+  :kubrick.freenode.net 301 ender_bot Axman6 :auto-away
+
+bad_channel_key
+  :kubrick.freenode.net 475 ender_bot #highgroove :You must specify the channel key (+k)
+
+topic_change
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net TOPIC #botwar :We be goovin'!
+
+parted_channel
+  :ender_bot!n=ender_bo@ip68-97-89-187.ok.ok.cox.net PART #botwar :
+
+user_joined
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net JOIN :#botwar
+
+user_parted
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net PART #botwar :
+
+kicked_from_channel
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net KICK #botwar ender_bot :JEG2
+
+user_kicked
+  :ender_bot!n=ender_bo@ip68-97-89-187.ok.ok.cox.net KICK #botwar JEG2 :ender_bot
+
+channel_message
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net PRIVMSG #botwar :A channel message
+
+targeted_channel_message
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net PRIVMSG #botwar :ender_bot: A channel message
+
+private_message
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net PRIVMSG ender_bot :A private message
+
+formatted_message
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net PRIVMSG #highgroove :bold italic underline 12blue
+
+quit
+  :ender_bot!n=ender_bo@ip68-97-89-187.ok.ok.cox.net QUIT :
+
+user_quit
+  :JEG2!n=JEG2@ip68-97-89-187.ok.ok.cox.net QUIT :
+
+connection_error
+  ERROR :Closing Link: ip68-97-89-187.ok.ok.cox.net ()
